@@ -1,0 +1,262 @@
+
+.formOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 20, 30, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 20px;
+  overflow-y: auto;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+}
+
+.formContainerModal {
+  background-color: var(--card-bg);
+  padding: 30px 40px 35px 40px;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color-light);
+  width: 100%;
+  max-width: 800px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  animation: fadeInScaleUp 0.3s ease-out;
+}
+
+@keyframes fadeInScaleUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.formContainerModal h3 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: var(--text-primary);
+  font-size: 1.9em;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1.5px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.light-theme .errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  text-align: center;
+}
+.dark-theme .errorMessage {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border: 1px solid #753742;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 28px;
+  margin-bottom: 30px;
+}
+.formGrid > div[style*="gridColumn: span 2"] {
+  grid-column: span 2;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding-left: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.inputGroup:focus-within {
+  border-color: var(--button-primary-bg);
+  box-shadow: 0 0 0 3px var(--lp-contato-form-input-focus-shadow);
+}
+.dark-theme .inputGroup input:-webkit-autofill,
+.dark-theme .inputGroup textarea:-webkit-autofill,
+.dark-theme .inputGroup input:-webkit-autofill:hover,
+.dark-theme .inputGroup input:-webkit-autofill:focus,
+.dark-theme .inputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--background-secondary) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+.light-theme .inputGroup input:-webkit-autofill,
+.light-theme .inputGroup textarea:-webkit-autofill,
+.light-theme .inputGroup input:-webkit-autofill:hover,
+.light-theme .inputGroup input:-webkit-autofill:focus,
+.light-theme .inputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #f9fafb inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+}
+
+
+.icon {
+  margin-right: 12px;
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.formInput,
+.formTextarea {
+  flex-grow: 1;
+  padding: 15px 15px 15px 0;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  color: var(--text-primary);
+  width: 100%;
+}
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+}
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+.formInput:disabled,
+.formTextarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.inputGroup:has(:disabled) {
+  background-color: var(--border-color-light);
+  opacity: 0.7;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.sectionTitle {
+  grid-column: span 2;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-top: 25px;
+  border-top: 1.5px solid var(--border-color);
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.sectionTitle h4 {
+  margin: 0;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1.5px solid var(--border-color);
+}
+
+.actionButton,
+.cancelButton {
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: all 0.25s ease-out;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  border: 1.5px solid transparent;
+  text-transform: none;
+  letter-spacing: 0.3px;
+}
+
+.actionButton {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border-color: var(--button-primary-bg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+.actionButton:hover:not(:disabled) {
+  background-color: var(--button-primary-hover-bg);
+  border-color: var(--button-primary-hover-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+.actionButton:disabled {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cancelButton {
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+.cancelButton:hover:not(:disabled) {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+.cancelButton:disabled {
+  background-color: var(--border-color-light);
+  color: var(--text-secondary);
+  border-color: var(--border-color-light);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .formContainerModal {
+    padding: 25px 30px 30px 30px;
+    max-width: 95%;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .formGrid > div[style*="gridColumn: span 2"] {
+    grid-column: span 1;
+  }
+  .formContainerModal h3 {
+    font-size: 1.6em;
+  }
+}
+@media (max-width: 480px) {
+  .formActions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  .actionButton,
+  .cancelButton {
+    width: 100%;
+  }
+}

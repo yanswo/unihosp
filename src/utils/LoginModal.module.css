@@ -1,0 +1,234 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modalOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modalOverlay.open .modalContent {
+  transform: scale(1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeButton:hover {
+  color: #333;
+}
+
+.modalBody {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.illustrationContainer {
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illustration {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.formContainer {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 12px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup:focus-within {
+  border-color: #007bff;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #777;
+  font-size: 1.1em;
+}
+
+.inputField {
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  font-size: 1em;
+  color: #333;
+  flex-grow: 1;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.inputField::placeholder {
+  color: #aaa;
+}
+
+.confirmButton {
+  background-color: #18d2b2;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  transition: background-color 0.2s ease;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.confirmButton:hover {
+  background-color: #13a88a;
+}
+
+.signupLink {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.signupLink a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signupLink a:hover {
+  text-decoration: underline;
+}
+
+.formContainer {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9em;
+  border: 1px solid #ef9a9a;
+}
+
+.userTypeSelector {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.userTypeSelector label {
+  display: flex;
+  align-items: center;
+  font-size: 0.95em;
+  color: #333;
+  cursor: pointer;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.userTypeSelector input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #007bff;
+}
+
+@media (max-width: 480px) {
+  .userTypeSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+  }
+  .modalBody {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .illustrationContainer {
+    max-width: 200px;
+    margin-bottom: 15px;
+  }
+  .formContainer {
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .confirmButton {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 20px 15px;
+    width: 95%;
+  }
+  .illustrationContainer {
+    max-width: 160px;
+  }
+}

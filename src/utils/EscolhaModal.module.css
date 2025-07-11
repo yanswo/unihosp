@@ -1,0 +1,145 @@
+/* src/utils/EscolhaModal.module.css */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1060;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modalOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 90%;
+  max-width: 550px;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modalOverlay.open .modalContent {
+  transform: scale(1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeButton:hover {
+  color: #333;
+}
+
+.modalTitle {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.modalSubtitle {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 30px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.choiceButton {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.1s ease;
+  text-align: left;
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.choiceButton:hover {
+  background-color: #e9e9e9;
+  border-color: #ccc;
+  transform: translateY(-2px);
+}
+
+.choiceButton:active {
+  transform: translateY(0px);
+}
+
+.buttonDescription {
+  font-size: 0.8em;
+  font-weight: normal;
+  color: #555;
+  margin-top: 5px;
+}
+
+.locadorButton {
+}
+
+.locadorButton:disabled {
+  background-color: #f8f8f8;
+  color: #aaa;
+  border-color: #eee;
+  cursor: not-allowed;
+}
+
+.locadorButton:disabled:hover {
+  transform: none;
+  background-color: #f8f8f8;
+  border-color: #eee;
+}
+
+.alternativeLink {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 10px;
+}
+
+.alternativeLink a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.alternativeLink a:hover {
+  text-decoration: underline;
+}

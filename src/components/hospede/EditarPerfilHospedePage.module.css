@@ -1,0 +1,206 @@
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background-page);
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.dashboardContent {
+  padding: 40px 50px;
+  padding-top: 110px;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.dashboardSection {
+  background-color: var(--card-bg);
+  padding: 35px 45px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: var(--card-shadow);
+}
+
+.dashboardSection h3 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 2em;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px 30px;
+  margin-bottom: 35px;
+}
+
+.inputGroupAdmin {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0px 18px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.inputGroupAdmin:focus-within {
+  border-color: var(--text-link);
+  box-shadow: 0 0 0 4px var(--lp-contato-form-input-focus-shadow);
+}
+.dark-theme .inputGroupAdmin input:-webkit-autofill,
+.dark-theme .inputGroupAdmin input:-webkit-autofill:hover,
+.dark-theme .inputGroupAdmin input:-webkit-autofill:focus,
+.dark-theme .inputGroupAdmin input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--background-secondary) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+.light-theme .inputGroupAdmin input:-webkit-autofill,
+.light-theme .inputGroupAdmin input:-webkit-autofill:hover,
+.light-theme .inputGroupAdmin input:-webkit-autofill:focus,
+.light-theme .inputGroupAdmin input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #f8f9fc inset !important;
+  -webkit-text-fill-color: #495057 !important;
+}
+
+
+.icon {
+  margin-right: 15px;
+  color: var(--text-secondary);
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+
+.formInput {
+  flex-grow: 1;
+  padding: 16px 0px;
+  border: none;
+  background-color: transparent;
+  font-size: 1.05em;
+  font-family: "Josefin Sans", sans-serif;
+  color: var(--text-primary);
+  width: 100%;
+}
+.formInput:focus {
+  outline: none;
+}
+.formInput::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+.formInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.inputGroupAdmin:has(:disabled) {
+  background-color: var(--border-color-light);
+  opacity: 0.7;
+}
+
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1.5px solid var(--border-color);
+}
+
+.actionButton, .cancelButton {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.05em;
+  font-weight: 600;
+  transition: all 0.25s ease-out;
+  font-family: "Josefin Sans", sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.actionButton {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+.actionButton:hover:not(:disabled) {
+  background: var(--button-primary-hover-bg);
+  transform: translateY(-2px);
+}
+.actionButton:active:not(:disabled) {
+  transform: translateY(0px);
+}
+.actionButton:disabled {
+  background: var(--border-color);
+  color: var(--text-secondary);
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.cancelButton {
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border-color);
+}
+.cancelButton:hover:not(:disabled) {
+  background-color: var(--border-color);
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+}
+.cancelButton:active:not(:disabled) {
+  transform: translateY(0px);
+}
+.cancelButton:disabled {
+  background-color: var(--border-color-light);
+  color: var(--text-secondary);
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: var(--border-color-light);
+  transform: none;
+}
+
+.loading {
+  font-size: 1.1em;
+  color: var(--text-link);
+  text-align: center;
+  padding: 30px;
+}
+
+.errorMessage, .successMessage {
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  font-size: 1em;
+  text-align: center;
+  font-weight: 500;
+  border: 1.5px solid transparent;
+}
+.light-theme .errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+}
+.dark-theme .errorMessage {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border-color: #753742;
+}
+.light-theme .successMessage {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #c8e6c9;
+}
+.dark-theme .successMessage {
+  background-color: #1e3c20;
+  color: #a5d6a7;
+  border-color: #385723;
+}

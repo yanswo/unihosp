@@ -1,0 +1,217 @@
+
+.loading,
+.error,
+.semConversas {
+  padding: 30px 25px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: normal;
+  font-size: 1.05em;
+  border-radius: 12px;
+}
+.loading {
+  background-color: var(--background-secondary);
+  border: 1px dashed var(--border-color);
+}
+
+.light-theme .error {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 5px solid #e53935;
+}
+.dark-theme .error {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border-left: 5px solid #ef5350;
+}
+
+.semConversas {
+  background-color: var(--background-secondary);
+  border: 1px dashed var(--border-color);
+}
+
+.listaConversas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: var(--card-bg);
+}
+
+.itemConversa {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color-light);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
+  position: relative;
+}
+
+.itemConversa:last-child {
+  border-bottom: none;
+}
+
+.itemConversa:hover {
+  background-color: var(--background-secondary);
+}
+
+.itemConversa.ativa {
+  background-color: rgba(var(--button-primary-bg-rgb, 0, 123, 255), 0.08);
+  border-left: 4px solid var(--button-primary-bg);
+  padding-left: 16px;
+}
+.itemConversa.ativa .nomeParticipante {
+  color: var(--button-primary-bg);
+  font-weight: 700;
+}
+.itemConversa.ativa .previewMensagem {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.avatarPlaceholder {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+  font-weight: 600;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.infoConversa {
+  flex-grow: 1;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.nomeEData {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.nomeParticipante {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dataUltimaMensagem {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.acoesItemConversa {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.previewMensagem {
+  font-size: 0.95em;
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.45;
+}
+
+.infoCasaConversa {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.badgeNaoLidasItem {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 3px 7px;
+  border-radius: 10px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.itemConversa.naoLida .nomeParticipante {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.itemConversa.naoLida .previewMensagem {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+
+.botaoExcluirConversa {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.botaoExcluirConversa svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+.botaoExcluirConversa:hover:not(:disabled) {
+  color: #e53935;
+  background-color: var(--background-secondary);
+}
+.dark-theme .botaoExcluirConversa:hover:not(:disabled) {
+  color: #ff8a80;
+  background-color: var(--background-secondary);
+}
+
+.botaoExcluirConversa:disabled {
+  color: var(--border-color);
+  cursor: not-allowed;
+}
+
+.light-theme .errorInline {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  text-align: center;
+  border-bottom: 1px solid #ffcdd2;
+}
+.dark-theme .errorInline {
+  background-color: #422c2e;
+  color: #ff8a80;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  text-align: center;
+  border-bottom: 1px solid #753742;
+}

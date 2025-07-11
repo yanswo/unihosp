@@ -1,0 +1,263 @@
+
+.loadingFeedback,
+.errorFeedback {
+  padding: 20px 25px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 25px 0;
+  font-size: 1.05em;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+}
+.loadingFeedback {
+  color: var(--text-link);
+  background-color: var(--background-secondary);
+  border: 1.5px dashed var(--border-color);
+}
+.light-theme .errorFeedback {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-left: 5px solid #e53935;
+}
+.dark-theme .errorFeedback {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border: 1px solid #753742;
+  border-left: 5px solid #ef5350;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1.5px solid var(--border-color);
+}
+
+.headerContainer h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.6em;
+  font-weight: 700;
+}
+
+.addCasaButton {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: all 0.25s ease-out;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0.3px;
+}
+.addCasaButton svg {
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+}
+.addCasaButton:hover:not(:disabled) {
+  background: var(--button-primary-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.addCasaButton:disabled {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color-light);
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0;
+  font-size: 0.95em;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color-light);
+  color: var(--text-secondary);
+}
+.dataTable td:first-child, .dataTable th:first-child {
+  padding-left: 25px;
+}
+.dataTable td:last-child, .dataTable th:last-child {
+  padding-right: 25px;
+}
+
+
+.dataTable th {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.07em;
+}
+.dataTable th:first-child {
+  border-top-left-radius: 12px;
+}
+.dataTable th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.dataTable tbody tr {
+  transition: background-color 0.15s ease;
+}
+.dataTable tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+.light-theme .dataTable tbody tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+.dataTable tbody tr:hover {
+  background-color: var(--border-color-light);
+}
+.dark-theme .dataTable tbody tr:hover {
+  background-color: rgba(255,255,255,0.03);
+}
+
+.dataTable td {
+  color: var(--text-primary);
+}
+.dataTable td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.actionsCell {
+  text-align: right;
+  white-space: nowrap;
+}
+.actionsCell button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+  border: 1px solid transparent;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  text-transform: none;
+  min-width: 36px;
+  min-height: 36px;
+}
+.actionsCell button:first-child {
+  margin-left: 0;
+}
+.actionsCell button svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.2;
+}
+
+.tableActionButton {
+  background-color: var(--text-link);
+  color: var(--background-primary);
+  border-color: var(--text-link);
+}
+.tableActionButton svg {
+  stroke: var(--background-primary);
+}
+.tableActionButton:hover:not(:disabled) {
+  filter: brightness(85%);
+}
+
+.tableActionButtonDelete {
+  background-color: transparent;
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+.tableActionButtonDelete svg {
+  stroke: #e74c3c;
+}
+.tableActionButtonDelete:hover:not(:disabled) {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #c0392b;
+}
+.dark-theme .tableActionButtonDelete {
+  color: #ff8a80;
+  border-color: #ff8a80;
+}
+.dark-theme .tableActionButtonDelete svg {
+  stroke: #ff8a80;
+}
+.dark-theme .tableActionButtonDelete:hover:not(:disabled) {
+  background-color: rgba(255, 138, 128, 0.1);
+  color: #ff5252;
+}
+
+
+.calendarButton {
+  background-color: #ffc107;
+  color: #212529;
+  border-color: #ffc107;
+}
+.calendarButton svg {
+  stroke: #212529;
+}
+.calendarButton:hover:not(:disabled) {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+.dark-theme .calendarButton {
+  background-color: #ffca2c;
+  color: #30302e;
+}
+.dark-theme .calendarButton svg {
+  stroke: #30302e;
+}
+.dark-theme .calendarButton:hover:not(:disabled) {
+  background-color: #ffda63;
+}
+
+
+.actionsCell button:disabled {
+  background-color: var(--border-color-light);
+  color: var(--text-secondary);
+  border-color: var(--border-color-light);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.actionsCell button:disabled svg {
+  stroke: var(--text-secondary);
+  opacity: 0.5;
+}
+
+
+.noCasasMessage {
+  padding: 30px;
+  text-align: center;
+  color: var(--text-secondary);
+  background-color: var(--background-secondary);
+  border-radius: 12px;
+  border: 1.5px dashed var(--border-color);
+  margin-top: 25px;
+  font-size: 1.05em;
+}

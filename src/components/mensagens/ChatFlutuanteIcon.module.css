@@ -1,0 +1,61 @@
+.chatFlutuanteBtn {
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  width: 64px;
+  height: 64px;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform 0.25s ease-in-out, background-color 0.2s ease;
+  padding: 0;
+}
+.dark-theme .chatFlutuanteBtn {
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.4);
+}
+
+.chatFlutuanteBtn:hover {
+  background-color: var(--button-primary-hover-bg);
+  transform: scale(1.12) rotate(5deg);
+}
+.chatFlutuanteBtn:active {
+  transform: scale(1.05) rotate(0deg);
+}
+
+.chatFlutuanteBtn svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0.2;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: #e53935;
+  color: white;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 0.8em;
+  font-weight: bold;
+  border: 2.5px solid var(--button-primary-bg);
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
+}
+.dark-theme .notificationBadge {
+  border-color: var(--button-primary-bg);
+}

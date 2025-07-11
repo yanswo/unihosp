@@ -1,0 +1,163 @@
+.contatoSection {
+  padding: 70px 40px;
+  background-color: var(--lp-contato-bg);
+  box-sizing: border-box;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2.6em;
+  font-weight: 700;
+  color: var(--lp-contato-title);
+  text-align: center;
+  margin-bottom: 15px;
+}
+.sectionSubtitle {
+  font-size: 1.15em;
+  color: var(--lp-contato-subtitle);
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+
+.contatoWrapper {
+  display: flex;
+  gap: 40px;
+  background-color: var(--lp-contato-wrapper-bg);
+  padding: 35px 40px;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color-light);
+}
+
+.contatoInfo {
+  flex: 0.8;
+}
+
+.contatoInfo h3 {
+  font-size: 1.7em;
+  color: var(--lp-contato-info-h3);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.contatoInfo p {
+  font-size: 1em;
+  color: var(--lp-contato-info-p);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.contatoInfo a {
+  color: var(--lp-contato-info-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+.contatoInfo a:hover {
+  color: var(--text-link-hover);
+  text-decoration: underline;
+}
+
+.contatoForm {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 7px;
+  font-weight: 500;
+  color: var(--lp-contato-form-label);
+  font-size: 0.9em;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="email"],
+.formGroup textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--lp-contato-form-input-border);
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--lp-contato-form-input-bg);
+  color: var(--text-primary);
+}
+.formGroup input[type="text"]::placeholder,
+.formGroup input[type="email"]::placeholder,
+.formGroup textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="email"]:focus,
+.formGroup textarea:focus {
+  border-color: var(--lp-contato-form-input-focus-border);
+  box-shadow: 0 0 0 3px var(--lp-contato-form-input-focus-shadow);
+  outline: none;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.submitButton {
+  background-color: var(--lp-contato-submit-bg);
+  color: var(--button-primary-text);
+  padding: 14px 28px;
+  font-size: 1em;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  font-family: "Josefin Sans", sans-serif;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.submitButton:hover {
+  background-color: var(--lp-contato-submit-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 768px) {
+  .contatoWrapper {
+    flex-direction: column;
+    gap: 35px;
+    padding: 30px 25px;
+  }
+  .sectionTitle {
+    font-size: 2.2em;
+  }
+  .sectionSubtitle {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+  }
+  .submitButton {
+      align-self: stretch;
+  }
+}

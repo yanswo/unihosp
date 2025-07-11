@@ -1,0 +1,158 @@
+.sobreSection {
+  padding: 70px 40px;
+  background-color: var(--lp-sobre-bg);
+  box-sizing: border-box;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2.6em;
+  font-weight: 700;
+  color: var(--lp-sobre-title);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+  font-size: 1.15em;
+  color: var(--lp-sobre-subtitle);
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.textContainer {
+  flex: 1.2;
+  max-width: 600px;
+  text-align: left;
+}
+
+.textHeading {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: var(--lp-sobre-text-heading);
+  margin-bottom: 18px;
+  margin-top: 25px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--lp-sobre-icon-list);
+  display: inline-block;
+}
+.textContainer h3:first-of-type {
+  margin-top: 0;
+}
+
+.paragraphText {
+  font-size: 1.05em;
+  color: var(--lp-sobre-paragraph);
+  line-height: 1.8;
+  margin-bottom: 22px;
+  font-weight: 400;
+}
+
+.valuesList {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.valuesList li {
+  font-size: 1em;
+  color: var(--lp-sobre-paragraph);
+  line-height: 1.75;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.valuesList .icon {
+  margin-right: 15px;
+  color: var(--lp-sobre-icon-list);
+  font-size: 1.3em;
+}
+
+.imagePlaceholderWrapper {
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.imagePlaceholder img {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 992px) {
+  .contentWrapper {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+  .textContainer {
+    max-width: 100%;
+    text-align: left;
+  }
+  .textContainer h3 {
+    text-align: left;
+    display: inline-block;
+  }
+  .textContainer h3::after {
+    display: none;
+  }
+
+  .imagePlaceholderWrapper {
+    width: 80%;
+    max-width: 350px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sobreSection {
+    padding: 60px 20px;
+  }
+  .sectionTitle {
+    font-size: 2em;
+  }
+  .sectionSubtitle {
+    font-size: 1em;
+    margin-bottom: 40px;
+  }
+  .textHeading {
+    font-size: 1.3em;
+  }
+  .paragraphText,
+  .valuesList li {
+    font-size: 0.95em;
+  }
+}

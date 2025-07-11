@@ -1,0 +1,76 @@
+.footer {
+  background-color: var(--lp-footer-bg);
+  color: var(--lp-footer-text);
+  padding: 50px 40px;
+  text-align: center;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footerContent {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.siteName {
+  font-size: 1.7em;
+  font-weight: 600;
+  color: var(--lp-footer-site-name);
+  margin-bottom: 18px;
+}
+
+.contactInfo {
+  margin-bottom: 22px;
+  font-size: 1em;
+}
+
+.emailLink {
+  color: var(--lp-footer-email-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.emailLink:hover {
+  color: var(--text-link-hover);
+  text-decoration: underline;
+}
+
+.socialLinks {
+  margin-bottom: 28px;
+}
+
+.socialLink {
+  color: var(--lp-footer-social-link);
+  text-decoration: none;
+  margin: 0 14px;
+  font-size: 0.95em;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.socialLink:hover {
+  color: var(--lp-footer-social-link-hover);
+  transform: translateY(-2px);
+}
+
+.copyright {
+  font-size: 0.9em;
+  color: var(--lp-footer-copyright);
+  margin-top: 30px;
+}
+
+@media (max-width: 576px) {
+    .footer {
+        padding: 40px 20px;
+    }
+    .siteName {
+        font-size: 1.6em;
+    }
+    .contactInfo, .socialLink, .copyright {
+        font-size: 0.85em;
+    }
+    .socialLink {
+        margin: 0 10px;
+    }
+}

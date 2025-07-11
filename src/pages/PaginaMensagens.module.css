@@ -1,0 +1,137 @@
+
+.paginaMensagensContainer {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  background-color: var(--background-page);
+  overflow: hidden;
+}
+
+.conteudoPrincipalMensagens {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  max-width: 1350px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 70px;
+  height: calc(100vh - 70px);
+
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color-light);
+}
+
+.listaConversasContainer {
+  width: 380px;
+  min-width: 300px;
+  max-width: 35%;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-secondary);
+  transition: width 0.3s ease, min-width 0.3s ease;
+}
+
+.tituloSecao {
+  font-size: 1.3em;
+  color: var(--text-primary);
+  padding: 20px 25px;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 700;
+  background-color: var(--card-bg);
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.chatConversaContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  overflow: hidden;
+}
+
+.placeholderChat {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.2em;
+  background-color: var(--background-page);
+  height: 100%;
+}
+
+.placeholderIcon {
+  font-size: 4.5em;
+  margin-bottom: 30px;
+  color: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.dicaPlaceholder {
+  font-size: 0.95em;
+  color: var(--text-secondary);
+  margin-top: 18px;
+  opacity: 0.8;
+}
+
+.esconderEmMobile {
+}
+
+@media (max-width: 900px) {
+  .listaConversasContainer {
+    min-width: 280px;
+    width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .paginaMensagensContainer {
+  }
+  .conteudoPrincipalMensagens {
+    width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 70px);
+    margin: 0;
+    margin-top: 70px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  .listaConversasContainer {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100%;
+    border-right: none;
+  }
+  .listaConversasContainer.esconderEmMobile {
+    display: none !important;
+  }
+  
+  .chatConversaContainer {
+    width: 100% !important;
+    height: 100%;
+  }
+  .chatConversaContainer.esconderEmMobile {
+    display: none !important;
+  }
+  
+  .placeholderChat {
+     height: 100%;
+     border-radius: 0;
+  }
+
+  .tituloSecao {
+    padding: 18px 20px;
+    font-size: 1.15em;
+  }
+}

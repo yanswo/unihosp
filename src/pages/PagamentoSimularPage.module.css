@@ -1,0 +1,161 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.paymentCard {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.title {
+  color: #007bff;
+  margin-bottom: 25px;
+  font-size: 2em;
+}
+
+.reservaInfo {
+  text-align: left;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.reservaInfo h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.reservaInfo p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.reservaInfo strong {
+  color: #333;
+}
+
+.valorTotal {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 15px;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+  font-size: 0.9em;
+  display: inline-block;
+  line-height: 1.4;
+}
+.statusDefault { background-color: #6c757d; }
+.statusPENDENTE { background-color: #ffc107; color: #333; }
+.statusPENDENTE_PAGAMENTO { background-color: #fd7e14; color: white; }
+.statusCONFIRMADA { background-color: #28a745; }
+.statusPAGO_SIMULADO { background-color: #20c997; }
+.statusPAGO { background-color: #198754; }
+.statusCANCELADA_PELO_HOSPEDE { background-color: #dc3545; }
+.statusCANCELADA_PELO_LOCADOR { background-color: #dc3545; }
+.statusREJEITADA { background-color: #6c757d; }
+.statusCONCLUIDA { background-color: #0d6efd; }
+
+
+.paymentActions {
+  margin-top: 20px;
+}
+
+.paymentActions p {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.actionButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.actionButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.actionButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2em;
+  color: #555;
+  padding: 20px;
+  text-align: center;
+}
+
+.errorContainer p {
+  color: #dc3545;
+  background-color: #f8d7da;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #f5c6cb;
+}
+
+.errorMessageGlobal {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.successMessage {
+  padding: 30px;
+  text-align: center;
+}
+
+.successMessage h2 {
+  color: #28a745;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.successMessage p {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  line-height: 1.6;
+}

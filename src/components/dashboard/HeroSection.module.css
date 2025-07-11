@@ -1,0 +1,129 @@
+.heroSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 40px 50px;
+  min-height: calc(100vh - 70px);
+  background-color: var(--lp-hero-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.textContainer {
+  flex: 1.2;
+  max-width: 55%;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mainHeading {
+  font-size: 3.8em;
+  font-weight: 700;
+  color: var(--lp-hero-main-heading);
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.subHeading {
+  font-size: 1.3em;
+  color: var(--lp-hero-sub-heading);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 500px;
+}
+
+.imageContainer {
+  flex: 1;
+  max-width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInFromRight 0.8s 0.2s ease-out backwards;
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.heroImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 992px) {
+  .heroSection {
+    padding-left: 30px;
+    padding-right: 30px;
+    gap: 30px;
+  }
+  .textContainer {
+    max-width: 60%;
+  }
+  .imageContainer {
+    max-width: 40%;
+  }
+  .mainHeading {
+    font-size: 3em;
+  }
+  .subHeading {
+    font-size: 1.2em;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    min-height: auto;
+  }
+
+  .textContainer {
+    max-width: 100%;
+    padding-right: 0;
+    order: 2;
+    align-items: center;
+  }
+
+  .mainHeading {
+    font-size: 2.8em;
+  }
+
+  .subHeading {
+    font-size: 1.15em;
+    max-width: 100%;
+  }
+
+  .imageContainer {
+    max-width: 70%;
+    margin-bottom: 40px;
+    order: 1;
+  }
+}

@@ -1,0 +1,173 @@
+
+.loading,
+.error {
+  padding: 25px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 25px 0;
+  font-size: 1.1em;
+}
+.loading {
+  color: var(--text-link);
+  font-style: italic;
+  background-color: var(--background-secondary);
+}
+.light-theme .error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+.dark-theme .error {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border: 1px solid #753742;
+}
+.errorInline {
+  margin-bottom: 20px;
+}
+
+.favoritosContainer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.favoritosGrid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 30px;
+}
+
+.favoritoCard {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.favoritoCard:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+.favoritoImageContainer {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--background-secondary);
+  position: relative;
+}
+
+.favoritoImagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease-out;
+}
+.favoritoCard:hover .favoritoImagem {
+  transform: scale(1.1);
+}
+
+.favoritoInfo {
+  padding: 20px 25px 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.favoritoInfo h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.3em;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.favoritoInfo .cidadeEstado {
+  font-size: 0.95em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.favoritoInfo .precoPorNoite {
+  font-size: 1.15em;
+  font-weight: bold;
+  color: var(--header-title-hover-color);
+  margin-bottom: 18px;
+}
+
+.favoritoActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1.5px solid var(--border-color-light);
+}
+
+.detailsButton, .actionButtonSmall {
+  padding: 10px 18px;
+  font-size: 0.9em;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+}
+.detailsButton:hover, .actionButtonSmall:hover {
+  transform: translateY(-1px);
+}
+.detailsButton:active, .actionButtonSmall:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.detailsButton {
+  background-color: var(--text-link);
+  color: var(--background-primary);
+}
+.detailsButton:hover {
+  filter: brightness(85%);
+}
+
+.removeFavoriteButton {
+  border: 1.5px solid #e74c3c;
+  color: #e74c3c;
+  background-color: transparent;
+}
+.removeFavoriteButton:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+.dark-theme .removeFavoriteButton {
+  border-color: #ff8a80;
+  color: #ff8a80;
+}
+.dark-theme .removeFavoriteButton:hover {
+  background-color: rgba(255, 138, 128, 0.15);
+}
+
+
+@media (max-width: 680px) {
+  .favoritosGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .favoritoCard {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .favoritoImageContainer {
+    height: 220px;
+  }
+}

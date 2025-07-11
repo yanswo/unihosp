@@ -1,0 +1,170 @@
+
+.loading,
+.errorFeedback {
+  padding: 20px 25px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 25px 0;
+  font-size: 1.05em;
+}
+.loading {
+  color: var(--text-link);
+  background-color: var(--background-secondary);
+  border: 1.5px dashed var(--border-color);
+}
+.light-theme .errorFeedback {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-left: 5px solid #e53935;
+}
+.dark-theme .errorFeedback {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border: 1px solid #753742;
+  border-left: 5px solid #ef5350;
+}
+
+.reservasList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  display: grid;
+  gap: 25px;
+}
+
+.reservaCard {
+  background-color: var(--card-bg);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border-left: 6px solid var(--border-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.reservaCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.08);
+}
+.dark-theme .reservaCard:hover {
+    box-shadow: 0 7px 20px rgba(0,0,0,0.25);
+}
+
+
+.reservaStatusPENDENTE { border-left-color: #f39c12 !important; }
+.reservaStatusCONFIRMADA { border-left-color: #2ecc71 !important; }
+.reservaStatusCONCLUIDA { border-left-color: #95a5a6 !important; }
+.reservaStatusREJEITADA,
+.reservaStatusCANCELADA_PELO_HOSPEDE,
+.reservaStatusCANCELADA_PELO_LOCADOR {
+  border-left-color: #e74c3c !important;
+}
+
+.reservaCard h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.reservaCard p {
+  font-size: 0.95em;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.reservaCard p strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.78em;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  line-height: 1.3;
+}
+.statusPENDENTE { background-color: #f39c12; }
+.statusCONFIRMADA { background-color: #2ecc71; }
+.statusCONCLUIDA { background-color: #95a5a6; }
+.statusREJEITADA { background-color: #e74c3c; }
+.statusCANCELADA_PELO_HOSPEDE { background-color: #e74c3c; }
+.statusCANCELADA_PELO_LOCADOR { background-color: #e74c3c; }
+.statusPENDENTE_PAGAMENTO { background-color: #fd7e14; }
+.statusPAGO_SIMULADO { background-color: var(--header-title-hover-color); }
+.dark-theme .statusPAGO_SIMULADO { color: var(--background-primary); }
+.statusPAGO { background-color: #28a745; }
+
+
+.reservaActions {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1.5px solid var(--border-color-light);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reservaActions button {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+.reservaActions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.reservaActions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.actionButtonSecondary {
+  background-color: var(--text-link);
+  color: var(--background-primary);
+}
+.actionButtonSecondary:hover:not(:disabled) { filter: brightness(85%); }
+
+.actionButtonConfirm {
+  background-color: #27ae60;
+  color: white;
+}
+.actionButtonConfirm:hover:not(:disabled) { background-color: #1e8449; }
+
+.actionButtonRejeitar {
+  background-color: #cb4335;
+  color: white;
+}
+.actionButtonRejeitar:hover:not(:disabled) { background-color: #b03a2e; }
+
+.actionButtonDelete {
+  background-color: #c0392b;
+  color: white;
+}
+.actionButtonDelete:hover:not(:disabled) { background-color: #a93226; }
+
+.noReservasMessage {
+  padding: 30px;
+  text-align: center;
+  color: var(--text-secondary);
+  background-color: var(--background-secondary);
+  border-radius: 12px;
+  border: 1.5px dashed var(--border-color);
+  font-size: 1.05em;
+}

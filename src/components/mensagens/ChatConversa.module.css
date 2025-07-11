@@ -1,0 +1,284 @@
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: var(--background-secondary);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 70px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+  position: relative;
+  z-index: 5;
+}
+.dark-theme .chatHeader {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.botaoVoltarMobile {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 12px;
+  color: var(--text-secondary);
+}
+.botaoVoltarMobile:hover {
+  color: var(--button-primary-bg);
+}
+.botaoVoltarMobile svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.5;
+}
+
+.avatarPlaceholderHeader {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.chatComNome {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.mensagensLista {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: var(--background-page);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mensagemItem {
+  display: flex;
+  margin-bottom: 0;
+  max-width: 75%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.balaoMensagem {
+  padding: 10px 16px;
+  border-radius: 18px;
+  line-height: 1.55;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  word-wrap: break-word;
+}
+.dark-theme .balaoMensagem {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.minhaMensagem {
+  align-self: flex-end;
+}
+.minhaMensagem .balaoMensagem {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border-bottom-right-radius: 5px;
+}
+
+.outraMensagem {
+  align-self: flex-start;
+}
+.outraMensagem .balaoMensagem {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  border-bottom-left-radius: 5px;
+}
+
+.conteudoMensagem {
+  margin: 0 0 5px 0;
+  font-size: 1em;
+}
+
+.timestampMensagem {
+  font-size: 0.78em;
+  color: inherit;
+  opacity: 0.65;
+  display: block;
+  text-align: right;
+  margin-top: 3px;
+}
+.minhaMensagem .timestampMensagem {
+  opacity: 0.75;
+}
+
+
+.formularioEnvio {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--background-secondary);
+  min-height: 70px;
+}
+
+.inputMensagem {
+  flex-grow: 1;
+  padding: 14px 20px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 25px;
+  margin-right: 15px;
+  font-size: 1em;
+  font-family: "Josefin Sans", "Arial", sans-serif;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  resize: none;
+  line-height: 1.45;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.inputMensagem:focus {
+  outline: none;
+  border-color: var(--button-primary-bg);
+  box-shadow: 0 0 0 3.5px var(--lp-contato-form-input-focus-shadow);
+}
+
+.botaoEnviar {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.botaoEnviar:hover:not(:disabled) {
+  background-color: var(--button-primary-hover-bg);
+  transform: scale(1.08);
+}
+.botaoEnviar:disabled {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.botaoEnviar svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+
+.chatLoading,
+.chatError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 25px;
+  font-size: 1.1em;
+  border-radius: 12px;
+}
+.chatLoading {
+  color: var(--text-link);
+  background-color: var(--background-secondary);
+}
+.light-theme .chatError {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+.dark-theme .chatError {
+  background-color: #422c2e;
+  color: #ff8a80;
+  border: 1px solid #753742;
+}
+
+.errorEnvioMensagem,
+.enviandoStatus {
+  text-align: center;
+  font-size: 0.9em;
+  padding: 8px 0;
+  margin: 0 20px;
+}
+.errorEnvioMensagem {
+  color: #dc3545;
+}
+.dark-theme .errorEnvioMensagem {
+  color: #ff8a80;
+}
+.enviandoStatus {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .botaoVoltarMobile {
+    display: inline-flex;
+  }
+  .chatHeader {
+    padding: 10px 15px;
+    min-height: 65px;
+  }
+  .chatHeader .avatarPlaceholderHeader {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2em;
+    margin-right: 12px;
+  }
+  .chatHeader .chatComNome {
+    font-size: 1.1em;
+  }
+
+  .mensagensLista {
+    padding: 15px;
+    gap: 10px;
+  }
+  .mensagemItem {
+    max-width: 85%;
+  }
+  .balaoMensagem {
+    padding: 9px 14px;
+    border-radius: 16px;
+  }
+
+  .formularioEnvio {
+    padding: 12px 15px;
+    min-height: 65px;
+  }
+  .inputMensagem {
+    padding: 12px 18px;
+    margin-right: 10px;
+  }
+  .botaoEnviar {
+    width: 46px;
+    height: 46px;
+  }
+  .botaoEnviar svg {
+    width: 22px;
+    height: 22px;
+  }
+}

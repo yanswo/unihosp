@@ -1,0 +1,221 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modalOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 90%;
+  max-width: 850px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalOverlay.open .modalContent {
+  transform: scale(1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeButton:hover {
+  color: #333;
+}
+
+.modalBody {
+  display: flex;
+  align-items: flex-start;
+  gap: 35px;
+}
+
+.illustrationContainer {
+  flex: 0 0 280px;
+  margin-top: 20px;
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .illustrationContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.illustration {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.formContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalTitle {
+  font-size: 1.8em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 12px;
+  margin-bottom: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup:focus-within {
+  border-color: #007bff;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #777;
+  font-size: 1.1em;
+  min-width: 20px;
+  text-align: center;
+}
+
+.inputField {
+  border: none;
+  outline: none;
+  padding: 11px 0;
+  font-size: 0.95em;
+  color: #333;
+  flex-grow: 1;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.inputField::placeholder {
+  color: #aaa;
+}
+
+.confirmButton {
+  background-color: #18d2b2;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  transition: background-color 0.2s ease;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.confirmButton:hover {
+  background-color: #13a88a;
+}
+
+.alternativeLink {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.alternativeLink a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.alternativeLink a:hover {
+  text-decoration: underline;
+}
+
+.formContainer {
+  flex: 1.8;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9em;
+  border: 1px solid #ef9a9a;
+}
+
+.successMessage {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9em;
+  border: 1px solid #a5d6a7;
+}
+
+@media (max-width: 799px) {
+  .modalBody {
+    align-items: center;
+  }
+  .formContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 20px 15px;
+  }
+  .inputField {
+    font-size: 0.9em;
+  }
+  .confirmButton {
+    font-size: 1em;
+  }
+  .modalTitle {
+    font-size: 1.6em;
+  }
+}
