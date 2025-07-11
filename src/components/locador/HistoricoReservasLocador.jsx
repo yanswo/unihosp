@@ -19,14 +19,16 @@ function HistoricoReservasLocador() {
     setError("");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/locador/reservas/historico`,
+        `https://apiunihosp.onrender.com/api/locador/reservas/historico`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       const data = await response.json();
       if (!response.ok)
-        throw new Error(data.error || "Erro ao buscar histórico de reservas do locador.");
+        throw new Error(
+          data.error || "Erro ao buscar histórico de reservas do locador."
+        );
       if (Array.isArray(data)) setHistorico(data);
       else {
         setHistorico([]);
@@ -41,10 +43,10 @@ function HistoricoReservasLocador() {
 
   useEffect(() => {
     if (token && userId) {
-        fetchHistorico();
+      fetchHistorico();
     } else if (!token || !userId) {
-        setError("Autenticação necessária para visualizar o histórico.");
-        setLoading(false);
+      setError("Autenticação necessária para visualizar o histórico.");
+      setLoading(false);
     }
   }, [fetchHistorico, token, userId]);
 
@@ -52,7 +54,9 @@ function HistoricoReservasLocador() {
     new Date(dataISO).toLocaleDateString("pt-BR", { timeZone: "UTC" });
 
   if (loading && historico.length === 0) {
-    return <div className={styles.loading}>Carregando histórico de reservas...</div>;
+    return (
+      <div className={styles.loading}>Carregando histórico de reservas...</div>
+    );
   }
   if (error && historico.length === 0) {
     return <div className={styles.errorFeedback}>{error}</div>;
@@ -62,17 +66,23 @@ function HistoricoReservasLocador() {
     <>
       {}
       {}
-      {error && historico.length > 0 && <p className={styles.errorFeedback}>{error}</p>} {}
-      
+      {error && historico.length > 0 && (
+        <p className={styles.errorFeedback}>{error}</p>
+      )}{" "}
+      {}
       {historico.length === 0 && !loading && !error ? (
-        <p className={styles.noReservasMessage}>Nenhuma reserva encontrada no seu histórico.</p>
+        <p className={styles.noReservasMessage}>
+          Nenhuma reserva encontrada no seu histórico.
+        </p>
       ) : (
         <ul className={styles.reservasList}>
           {historico.map((reserva) => (
             <li
               key={reserva.id}
-              className={`${styles.reservaCard} ${ // Usando estilos do CSS module
-                styles["reservaStatus" + reserva.status?.replace(/\s+/g, "")] || ""
+              className={`${styles.reservaCard} ${
+                // Usando estilos do CSS module
+                styles["reservaStatus" + reserva.status?.replace(/\s+/g, "")] ||
+                ""
               }`}
             >
               {}
@@ -85,7 +95,8 @@ function HistoricoReservasLocador() {
                 {reserva.hospede?.email || "N/A"})
               </p>
               <p>
-                <strong>Período:</strong> {formatarData(reserva.dataCheckIn)} - {formatarData(reserva.dataCheckOut)}
+                <strong>Período:</strong> {formatarData(reserva.dataCheckIn)} -{" "}
+                {formatarData(reserva.dataCheckOut)}
               </p>
               <p>
                 <strong>Status:</strong>{" "}
@@ -101,9 +112,9 @@ function HistoricoReservasLocador() {
                 <button
                   className={styles.actionButtonSecondary}
                   onClick={() => {
-                      alert(
-                        `Ver detalhes da Casa ID: ${reserva.casaId} (implementar)`
-                      );
+                    alert(
+                      `Ver detalhes da Casa ID: ${reserva.casaId} (implementar)`
+                    );
                   }}
                 >
                   Ver Casa

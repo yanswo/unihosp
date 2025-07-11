@@ -22,7 +22,7 @@ function ProfileSummary() {
       setError("");
       try {
         const response = await fetch(
-          `http://localhost:5000/api/hospede/${userId}`,
+          `https://apiunihosp.onrender.com/api/hospede/${userId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -51,8 +51,17 @@ function ProfileSummary() {
   }, [token, userId]);
 
   if (loading)
-    return <div className={styles.profileSummary}><p className={styles.loading}>Carregando seu perfil...</p></div>;
-  if (error) return <div className={styles.profileSummary}><p className={styles.error}>{error}</p></div>;
+    return (
+      <div className={styles.profileSummary}>
+        <p className={styles.loading}>Carregando seu perfil...</p>
+      </div>
+    );
+  if (error)
+    return (
+      <div className={styles.profileSummary}>
+        <p className={styles.error}>{error}</p>
+      </div>
+    );
   if (!hospedeData)
     return (
       <div className={styles.profileSummary}>

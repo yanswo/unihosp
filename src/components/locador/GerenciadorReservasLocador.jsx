@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../../context/AuthContext";
 import styles from "./GerenciadorReservasLocador.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function GerenciadorReservasLocador() {
   const { token, userId } = useAuth();
@@ -18,14 +18,16 @@ function GerenciadorReservasLocador() {
     setErrorReservas("");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/locador/reservas`,
+        `https://apiunihosp.onrender.com/api/locador/reservas`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || "Erro ao buscar reservas ativas do locador.");
+        throw new Error(
+          data.error || "Erro ao buscar reservas ativas do locador."
+        );
       }
       if (Array.isArray(data)) {
         setReservas(data);
@@ -68,7 +70,7 @@ function GerenciadorReservasLocador() {
     setOperationLoading({ id: reservaId, action: actionType });
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservas/${reservaId}/status`,
+        `https://apiunihosp.onrender.com/api/reservas/${reservaId}/status`,
         {
           method: "PUT",
           headers: {
@@ -81,8 +83,7 @@ function GerenciadorReservasLocador() {
       const result = await response.json();
       if (!response.ok) {
         throw new Error(
-          result.error ||
-            `Falha ao atualizar status para ${novoStatus}.`
+          result.error || `Falha ao atualizar status para ${novoStatus}.`
         );
       }
       toast.success("Status da reserva atualizado com sucesso!");
@@ -101,7 +102,9 @@ function GerenciadorReservasLocador() {
   };
 
   if (loadingReservas && reservas.length === 0) {
-    return <div className={styles.loading}>Carregando suas reservas ativas...</div>;
+    return (
+      <div className={styles.loading}>Carregando suas reservas ativas...</div>
+    );
   }
 
   if (errorReservas && reservas.length === 0) {
@@ -112,8 +115,10 @@ function GerenciadorReservasLocador() {
     <>
       {}
       {}
-      {errorReservas && reservas.length > 0 && <p className={styles.errorFeedback}>{errorReservas}</p>}
-      
+      {errorReservas && reservas.length > 0 && (
+        <p className={styles.errorFeedback}>{errorReservas}</p>
+      )}
+
       {reservas.length === 0 && !loadingReservas && !errorReservas ? (
         <p className={styles.noReservasMessage}>
           Nenhuma reserva ativa (pendente ou confirmada) encontrada para suas
@@ -132,7 +137,8 @@ function GerenciadorReservasLocador() {
             return (
               <li
                 key={reserva.id}
-                className={`${styles.reservaCard} ${ // Usando estilos do CSS module
+                className={`${styles.reservaCard} ${
+                  // Usando estilos do CSS module
                   styles[
                     "reservaStatus" + reserva.status?.replace(/\s+/g, "")
                   ] || ""
@@ -162,7 +168,18 @@ function GerenciadorReservasLocador() {
                   </span>
                 </p>
                 {reserva.statusPagamento && (
-                    <p><strong>Pagamento:</strong> <span className={`${styles.status} ${styles["status" + reserva.statusPagamento.replace(/\s+/g, "")] || ""}`}>{reserva.statusPagamento}</span></p>
+                  <p>
+                    <strong>Pagamento:</strong>{" "}
+                    <span
+                      className={`${styles.status} ${
+                        styles[
+                          "status" + reserva.statusPagamento.replace(/\s+/g, "")
+                        ] || ""
+                      }`}
+                    >
+                      {reserva.statusPagamento}
+                    </span>
+                  </p>
                 )}
                 <div className={styles.reservaActions}>
                   <button

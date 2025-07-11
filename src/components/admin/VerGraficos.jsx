@@ -39,13 +39,13 @@ function VerGraficos({ token }) {
 
     try {
       const [hospedesRes, locadoresRes, casasRes] = await Promise.all([
-        fetch("http://localhost:5000/api/hospede", {
+        fetch("https://apiunihosp.onrender.com/api/hospede", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch("http://localhost:5000/api/locador", {
+        fetch("https://apiunihosp.onrender.com/api/locador", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch("http://localhost:5000/api/casa", {
+        fetch("https://apiunihosp.onrender.com/api/casa", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

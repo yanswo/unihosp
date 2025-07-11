@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./EditarPerfilLocadorPage.module.css";
 import DashboardHeader from "../hospede/DashboardHeader";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const UserIcon = () => <span className={styles.icon}>&#128100;</span>;
 const EmailIcon = () => <span className={styles.icon}>&#128231;</span>;
@@ -40,14 +40,18 @@ function EditarPerfilLocadorPage() {
     setLoadingInitialData(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/locador/${userId}`,
+        `https://apiunihosp.onrender.com/api/locador/${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({ error: `Erro HTTP ${response.status}` }));
-        throw new Error(errData.error || "Erro ao buscar dados do perfil do locador.");
+        const errData = await response
+          .json()
+          .catch(() => ({ error: `Erro HTTP ${response.status}` }));
+        throw new Error(
+          errData.error || "Erro ao buscar dados do perfil do locador."
+        );
       }
       const data = await response.json();
       setFormData({
@@ -62,7 +66,9 @@ function EditarPerfilLocadorPage() {
       });
     } catch (err) {
       console.error("Erro ao buscar dados do locador:", err);
-      toast.error(err.message || "Não foi possível carregar os dados do perfil.");
+      toast.error(
+        err.message || "Não foi possível carregar os dados do perfil."
+      );
     } finally {
       setLoadingInitialData(false);
     }
@@ -96,10 +102,9 @@ function EditarPerfilLocadorPage() {
     if (payload.cidade && payload.cidade.trim() === "") payload.cidade = null;
     if (payload.estado && payload.estado.trim() === "") payload.estado = null;
 
-
     try {
       const response = await fetch(
-        `http://localhost:5000/api/locador/${userId}`,
+        `https://apiunihosp.onrender.com/api/locador/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -125,11 +130,19 @@ function EditarPerfilLocadorPage() {
 
   if (loadingInitialData) {
     return (
-      <div className={styles.pageContainer}> {}
+      <div className={styles.pageContainer}>
+        {" "}
+        {}
         <DashboardHeader />
-        <div className={styles.contentWrapper}> {}
-          <div className={styles.formSection}> {}
-            <p className={styles.loadingMessage}>Carregando dados do perfil...</p>
+        <div className={styles.contentWrapper}>
+          {" "}
+          {}
+          <div className={styles.formSection}>
+            {" "}
+            {}
+            <p className={styles.loadingMessage}>
+              Carregando dados do perfil...
+            </p>
           </div>
         </div>
       </div>
@@ -146,10 +159,7 @@ function EditarPerfilLocadorPage() {
           {}
           {}
 
-          <form
-            onSubmit={handleSubmit}
-            className={styles.profileEditForm}
-          >
+          <form onSubmit={handleSubmit} className={styles.profileEditForm}>
             <div className={styles.formGrid}>
               <div className={styles.inputGroup}>
                 <UserIcon />
@@ -177,7 +187,10 @@ function EditarPerfilLocadorPage() {
                   disabled={isSubmitting}
                 />
               </div>
-              <div className={styles.inputGroup} style={{ gridColumn: "span 2" }}>
+              <div
+                className={styles.inputGroup}
+                style={{ gridColumn: "span 2" }}
+              >
                 <LockIcon />
                 <input
                   className={styles.formInput}
@@ -203,7 +216,10 @@ function EditarPerfilLocadorPage() {
                   disabled={isSubmitting}
                 />
               </div>
-              <div className={styles.inputGroup} style={{ gridColumn: "span 2" }}>
+              <div
+                className={styles.inputGroup}
+                style={{ gridColumn: "span 2" }}
+              >
                 <AddressIcon />
                 <input
                   className={styles.formInput}

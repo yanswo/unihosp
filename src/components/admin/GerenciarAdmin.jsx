@@ -19,9 +19,12 @@ function GerenciarAdmins({ token }) {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:5000/api/admin", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        "https://apiunihosp.onrender.com/api/admin",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const responseText = await response.text();
       if (!response.ok) {
         let errData = { error: `Erro HTTP ${response.status}` };
@@ -68,7 +71,7 @@ function GerenciarAdmins({ token }) {
     setError("");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/${adminId}`,
+        `https://apiunihosp.onrender.com/api/admin/${adminId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -97,8 +100,8 @@ function GerenciarAdmins({ token }) {
     setError("");
     const method = adminId ? "PUT" : "POST";
     const url = adminId
-      ? `http://localhost:5000/api/admin/${adminId}`
-      : "http://localhost:5000/api/admin";
+      ? `https://apiunihosp.onrender.com/api/admin/${adminId}`
+      : "https://apiunihosp.onrender.com/api/admin";
 
     try {
       const response = await fetch(url, {

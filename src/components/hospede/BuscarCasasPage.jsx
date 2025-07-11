@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import ReservaModal from "../../utils/ReservaModal";
 import CasaDetalhesModal from "../../utils/CasaDetalhesModal";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function CasaCard({
   casa,
@@ -14,14 +14,16 @@ function CasaCard({
   isFavorito,
   isHospedeLogado,
 }) {
-  const imagemPrincipalUrl = casa.imagens && casa.imagens.length > 0
-    ? casa.imagens[0].url
-    : `https://placehold.co/300x180/A8D5E2/333?text=${encodeURIComponent(
-        casa.endereco?.substring(0, 15) || "Casa"
-      )}`;
-  const placeholderText = casa.imagens && casa.imagens.length > 0 
-    ? `Foto de ${casa.endereco}` 
-    : `Sem foto disponível para ${casa.endereco || "Casa"}`;
+  const imagemPrincipalUrl =
+    casa.imagens && casa.imagens.length > 0
+      ? casa.imagens[0].url
+      : `https://placehold.co/300x180/A8D5E2/333?text=${encodeURIComponent(
+          casa.endereco?.substring(0, 15) || "Casa"
+        )}`;
+  const placeholderText =
+    casa.imagens && casa.imagens.length > 0
+      ? `Foto de ${casa.endereco}`
+      : `Sem foto disponível para ${casa.endereco || "Casa"}`;
 
   return (
     <div className={styles.casaCard}>
@@ -33,7 +35,9 @@ function CasaCard({
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = `https://placehold.co/300x180/E0E0E0/BDBDBD?text=Indisponível`;
-            e.target.alt = `Imagem indisponível para ${casa.endereco || "Casa"}`;
+            e.target.alt = `Imagem indisponível para ${
+              casa.endereco || "Casa"
+            }`;
           }}
         />
       </div>
@@ -47,7 +51,8 @@ function CasaCard({
           {casa.cep ? ` - CEP: ${casa.cep}` : ""}
         </p>
         <p className={styles.diretrizes}>
-          <strong>Diretrizes:</strong> {casa.diretrizes ? casa.diretrizes.substring(0, 80) : "Não informado"}
+          <strong>Diretrizes:</strong>{" "}
+          {casa.diretrizes ? casa.diretrizes.substring(0, 80) : "Não informado"}
           {casa.diretrizes && casa.diretrizes.length > 80 ? "..." : ""}
         </p>
         {casa.complemento && (
@@ -60,9 +65,10 @@ function CasaCard({
             <strong>Locador:</strong> {casa.locador.name || "Não informado"}
           </p>
         )}
-         {typeof casa.precoPorNoite === 'number' && (
+        {typeof casa.precoPorNoite === "number" && (
           <p className={styles.precoPorNoite}>
-            <strong>Preço por Noite:</strong> R$ {casa.precoPorNoite.toFixed(2).replace('.', ',')}
+            <strong>Preço por Noite:</strong> R${" "}
+            {casa.precoPorNoite.toFixed(2).replace(".", ",")}
           </p>
         )}
         <div className={styles.casaActions}>
@@ -79,20 +85,29 @@ function CasaCard({
                   isFavorito ? styles.favoritedButton : styles.favoriteButton
                 }`}
                 onClick={() => onFavoritar(casa.id, isFavorito)}
-                title={isFavorito ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
-                aria-label={isFavorito ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
+                title={
+                  isFavorito
+                    ? "Remover dos Favoritos"
+                    : "Adicionar aos Favoritos"
+                }
+                aria-label={
+                  isFavorito
+                    ? "Remover dos Favoritos"
+                    : "Adicionar aos Favoritos"
+                }
               >
                 {isFavorito ? "❤️" : "🤍"}
               </button>
-              { (casa.precoPorNoite !== null && casa.precoPorNoite !== undefined) && (
-                 <button
+              {casa.precoPorNoite !== null &&
+                casa.precoPorNoite !== undefined && (
+                  <button
                     className={`${styles.actionButtonSmall} ${styles.reserveButton}`}
                     onClick={() => onAbrirModalReserva(casa)}
                     title="Reservar esta casa"
                   >
                     Reservar
                   </button>
-              )}
+                )}
             </>
           )}
         </div>
@@ -100,7 +115,6 @@ function CasaCard({
     </div>
   );
 }
-
 
 function BuscarCasasPage() {
   const { token, userId, userType, isAuthenticated } = useAuth();
@@ -118,7 +132,8 @@ function BuscarCasasPage() {
   const [selectedCasaParaReserva, setSelectedCasaParaReserva] = useState(null);
 
   const [isDetalhesModalOpen, setIsDetalhesModalOpen] = useState(false);
-  const [selectedCasaIdParaDetalhes, setSelectedCasaIdParaDetalhes] = useState(null);
+  const [selectedCasaIdParaDetalhes, setSelectedCasaIdParaDetalhes] =
+    useState(null);
 
   const isHospedeLogado = isAuthenticated && userType === "hospede";
 
@@ -127,26 +142,34 @@ function BuscarCasasPage() {
     setError("");
     try {
       const promessas = [
-        fetch("http://localhost:5000/api/casa").then((res) => {
-          if (!res.ok) throw new Error(`Erro HTTP ${res.status} ao buscar casas`);
+        fetch("https://apiunihosp.onrender.com/api/casa").then((res) => {
+          if (!res.ok)
+            throw new Error(`Erro HTTP ${res.status} ao buscar casas`);
           return res.json();
         }),
       ];
 
       if (isHospedeLogado && token) {
         promessas.push(
-          fetch("http://localhost:5000/api/hospede/favoritos", {
+          fetch("https://apiunihosp.onrender.com/api/hospede/favoritos", {
             headers: { Authorization: `Bearer ${token}` },
-          }).then((res) => {
-            if (!res.ok) {
-                console.warn(`Erro HTTP ${res.status} ao buscar favoritos, continuando...`);
-                return [];
-            }
-            return res.json();
-          }).catch(favError => {
-            console.warn("Falha ao buscar favoritos, continuando...", favError);
-            return [];
           })
+            .then((res) => {
+              if (!res.ok) {
+                console.warn(
+                  `Erro HTTP ${res.status} ao buscar favoritos, continuando...`
+                );
+                return [];
+              }
+              return res.json();
+            })
+            .catch((favError) => {
+              console.warn(
+                "Falha ao buscar favoritos, continuando...",
+                favError
+              );
+              return [];
+            })
         );
       } else {
         promessas.push(Promise.resolve([]));
@@ -158,7 +181,10 @@ function BuscarCasasPage() {
         setCasas(casasData);
       } else {
         setCasas([]);
-        console.error("BuscarCasasPage: Dados de casas não são array:", casasData);
+        console.error(
+          "BuscarCasasPage: Dados de casas não são array:",
+          casasData
+        );
         setError("Formato de dados de casas inesperado.");
       }
 
@@ -166,7 +192,10 @@ function BuscarCasasPage() {
         setFavoritosHospede(favoritosData.map((fav) => fav.casaId));
       } else {
         setFavoritosHospede([]);
-        console.warn("BuscarCasasPage: Dados de favoritos não são array ou falharam:", favoritosData);
+        console.warn(
+          "BuscarCasasPage: Dados de favoritos não são array ou falharam:",
+          favoritosData
+        );
       }
     } catch (err) {
       console.error("BuscarCasasPage: Falha ao buscar dados:", err);
@@ -182,14 +211,16 @@ function BuscarCasasPage() {
 
   const handleFavoritar = async (casaId, jaEFavorito) => {
     if (!isHospedeLogado || !token) {
-      toast.info("Você precisa estar logado como hóspede para favoritar casas.");
-      navigate('/login', { state: { from: location } });
+      toast.info(
+        "Você precisa estar logado como hóspede para favoritar casas."
+      );
+      navigate("/login", { state: { from: location } });
       return;
     }
     const method = jaEFavorito ? "DELETE" : "POST";
     const url = jaEFavorito
-      ? `http://localhost:5000/api/favoritos/${casaId}`
-      : `http://localhost:5000/api/favoritos`;
+      ? `https://apiunihosp.onrender.com/api/favoritos/${casaId}`
+      : `https://apiunihosp.onrender.com/api/favoritos`;
     const body = !jaEFavorito
       ? JSON.stringify({ casaId: parseInt(casaId) })
       : null;
@@ -200,9 +231,14 @@ function BuscarCasasPage() {
       const responseData = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(responseData.error || `Falha ao ${jaEFavorito ? "desfavoritar" : "favoritar"} casa.`);
+        throw new Error(
+          responseData.error ||
+            `Falha ao ${jaEFavorito ? "desfavoritar" : "favoritar"} casa.`
+        );
       }
-      toast.success(jaEFavorito ? "Removido dos favoritos!" : "Adicionado aos favoritos!");
+      toast.success(
+        jaEFavorito ? "Removido dos favoritos!" : "Adicionado aos favoritos!"
+      );
       fetchCasasEFavoritos();
     } catch (err) {
       console.error("Erro ao favoritar/desfavoritar:", err);
@@ -212,13 +248,18 @@ function BuscarCasasPage() {
 
   const handleAbrirModalReserva = (casaSelecionada) => {
     if (!isHospedeLogado) {
-      toast.info("Você precisa estar logado como hóspede para fazer uma reserva.");
-      navigate('/login', { state: { from: location } });
+      toast.info(
+        "Você precisa estar logado como hóspede para fazer uma reserva."
+      );
+      navigate("/login", { state: { from: location } });
       return;
     }
-    if (casaSelecionada.precoPorNoite === null || casaSelecionada.precoPorNoite === undefined) {
-        toast.warn("Esta casa não pode ser reservada (sem preço definido).");
-        return;
+    if (
+      casaSelecionada.precoPorNoite === null ||
+      casaSelecionada.precoPorNoite === undefined
+    ) {
+      toast.warn("Esta casa não pode ser reservada (sem preço definido).");
+      return;
     }
     setSelectedCasaParaReserva(casaSelecionada);
     setIsReservaModalOpen(true);
@@ -228,7 +269,7 @@ function BuscarCasasPage() {
     setIsReservaModalOpen(false);
     setSelectedCasaParaReserva(null);
   };
-  
+
   const handleReservaSucesso = (novaReserva) => {
     handleCloseReservaModal();
   };
@@ -244,23 +285,34 @@ function BuscarCasasPage() {
   };
 
   const handleContatarLocadorDoModal = async (locadorId, casaIdContexto) => {
-    if (!isAuthenticated || userType !== 'hospede') {
-      toast.info("Você precisa estar logado como hóspede para contatar o locador.");
-      navigate('/login', { state: { from: location } });
+    if (!isAuthenticated || userType !== "hospede") {
+      toast.info(
+        "Você precisa estar logado como hóspede para contatar o locador."
+      );
+      navigate("/login", { state: { from: location } });
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/conversas', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ outroUsuarioId: locadorId, casaId: casaIdContexto }),
-      });
+      const response = await fetch(
+        "https://apiunihosp.onrender.com/api/conversas",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            outroUsuarioId: locadorId,
+            casaId: casaIdContexto,
+          }),
+        }
+      );
       const conversaCriada = await response.json();
-      if (!response.ok) throw new Error(conversaCriada.error || "Não foi possível iniciar a conversa.");
-      
+      if (!response.ok)
+        throw new Error(
+          conversaCriada.error || "Não foi possível iniciar a conversa."
+        );
+
       setIsDetalhesModalOpen(false);
       navigate(`/mensagens/${conversaCriada.id}`);
     } catch (err) {
@@ -269,8 +321,10 @@ function BuscarCasasPage() {
     }
   };
 
-  const cidadesUnicas = [...new Set(casas.map((casa) => casa.cidade).filter(Boolean))].sort();
-  
+  const cidadesUnicas = [
+    ...new Set(casas.map((casa) => casa.cidade).filter(Boolean)),
+  ].sort();
+
   const filteredCasas = casas.filter((casa) => {
     const searchLower = searchTerm.toLowerCase();
     const cidadeMatch = filterCidade ? casa.cidade === filterCidade : true;
@@ -278,13 +332,12 @@ function BuscarCasasPage() {
     const enderecoMatch = casa.endereco?.toLowerCase().includes(searchLower);
     const cidadeTermMatch = casa.cidade?.toLowerCase().includes(searchLower);
     const estadoTermMatch = casa.estado?.toLowerCase().includes(searchLower);
-    const locadorNameMatch = casa.locador?.name?.toLowerCase().includes(searchLower);
+    const locadorNameMatch = casa.locador?.name
+      ?.toLowerCase()
+      .includes(searchLower);
 
     const searchTermMatch =
-      enderecoMatch ||
-      cidadeTermMatch ||
-      estadoTermMatch ||
-      locadorNameMatch;
+      enderecoMatch || cidadeTermMatch || estadoTermMatch || locadorNameMatch;
 
     return cidadeMatch && searchTermMatch;
   });
@@ -293,18 +346,22 @@ function BuscarCasasPage() {
     return (
       <div className={styles.pageContainer}>
         <div className={styles.content}>
-          <header className={styles.pageHeader}><h1>Encontre Sua Acomodação Ideal</h1></header>
+          <header className={styles.pageHeader}>
+            <h1>Encontre Sua Acomodação Ideal</h1>
+          </header>
           <p className={styles.loading}>Carregando acomodações...</p>
         </div>
       </div>
     );
   }
-  
+
   if (error) {
     return (
       <div className={styles.pageContainer}>
         <div className={styles.content}>
-          <header className={styles.pageHeader}><h1>Encontre Sua Acomodação Ideal</h1></header>
+          <header className={styles.pageHeader}>
+            <h1>Encontre Sua Acomodação Ideal</h1>
+          </header>
           <p className={styles.error}>Erro ao carregar acomodações: {error}</p>
         </div>
       </div>

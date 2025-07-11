@@ -1,33 +1,42 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import styles from './DisponibilidadeModal.module.css';
-import { useAuth } from '../../context/AuthContext';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect, useCallback } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import styles from "./DisponibilidadeModal.module.css";
+import { useAuth } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 const formatarDataParaAPI = (date) => {
-  if (!date) return '';
+  if (!date) return "";
   const d = new Date(date);
-  let month = '' + (d.getMonth() + 1);
-  let day = '' + d.getDate();
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
   const year = d.getFullYear();
 
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
 
-  return [year, month, day].join('-');
+  return [year, month, day].join("-");
 };
 
-function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado }) {
+function DisponibilidadeModal({
+  casaId,
+  nomeCasa,
+  onClose,
+  onBloqueioAtualizado,
+}) {
   const { token } = useAuth();
   const [bloqueios, setBloqueios] = useState([]);
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
-  const [dataInicioBloqueio, setDataInicioBloqueio] = useState(formatarDataParaAPI(new Date()));
-  const [dataFimBloqueio, setDataFimBloqueio] = useState(formatarDataParaAPI(new Date()));
-  const [motivoBloqueio, setMotivoBloqueio] = useState('');
+  const [dataInicioBloqueio, setDataInicioBloqueio] = useState(
+    formatarDataParaAPI(new Date())
+  );
+  const [dataFimBloqueio, setDataFimBloqueio] = useState(
+    formatarDataParaAPI(new Date())
+  );
+  const [motivoBloqueio, setMotivoBloqueio] = useState("");
   const [submittingBloqueio, setSubmittingBloqueio] = useState(false);
 
   const fetchBloqueiosEReservas = useCallback(async () => {
@@ -36,28 +45,37 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
       return;
     }
     setLoading(true);
-    setError('');
+    setError("");
     try {
-      const resBloqueios = await fetch(`http://localhost:5000/api/casas/${casaId}/bloqueios`, {
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
+      const resBloqueios = await fetch(
+        `https://apiunihosp.onrender.com/api/casas/${casaId}/bloqueios`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       if (!resBloqueios.ok) {
         const errData = await resBloqueios.json().catch(() => ({}));
-        throw new Error(errData.error || "Falha ao buscar bloqueios de disponibilidade.");
+        throw new Error(
+          errData.error || "Falha ao buscar bloqueios de disponibilidade."
+        );
       }
       const dataBloqueios = await resBloqueios.json();
       setBloqueios(Array.isArray(dataBloqueios) ? dataBloqueios : []);
 
-      const resCasa = await fetch(`http://localhost:5000/api/casa/${casaId}`, {
-          headers: { 'Authorization': `Bearer ${token}` },
-      });
+      const resCasa = await fetch(
+        `https://apiunihosp.onrender.com/api/casa/${casaId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       if (!resCasa.ok) {
-          const errData = await resCasa.json().catch(() => ({}));
-          throw new Error(errData.error || "Falha ao buscar detalhes da casa para reservas.");
+        const errData = await resCasa.json().catch(() => ({}));
+        throw new Error(
+          errData.error || "Falha ao buscar detalhes da casa para reservas."
+        );
       }
       const dataCasa = await resCasa.json();
       setReservas(Array.isArray(dataCasa.reservas) ? dataCasa.reservas : []);
-
     } catch (err) {
       console.error("Erro ao buscar dados de disponibilidade:", err);
       setError(err.message);
@@ -83,18 +101,21 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
     }
     setSubmittingBloqueio(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/casas/${casaId}/bloqueios`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          dataInicio: dataInicioBloqueio,
-          dataFim: dataFimBloqueio,
-          motivo: motivoBloqueio,
-        }),
-      });
+      const response = await fetch(
+        `https://apiunihosp.onrender.com/api/casas/${casaId}/bloqueios`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            dataInicio: dataInicioBloqueio,
+            dataFim: dataFimBloqueio,
+            motivo: motivoBloqueio,
+          }),
+        }
+      );
       const result = await response.json();
       if (!response.ok) {
         throw new Error(result.error || "Falha ao adicionar bloqueio.");
@@ -102,7 +123,7 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
       toast.success("Período de indisponibilidade adicionado!");
       setDataInicioBloqueio(formatarDataParaAPI(new Date()));
       setDataFimBloqueio(formatarDataParaAPI(new Date()));
-      setMotivoBloqueio('');
+      setMotivoBloqueio("");
       fetchBloqueiosEReservas();
       if (onBloqueioAtualizado) onBloqueioAtualizado();
     } catch (err) {
@@ -114,12 +135,20 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
   };
 
   const handleRemoverBloqueio = async (bloqueioId) => {
-    if (!window.confirm("Tem certeza que deseja remover este período de indisponibilidade?")) return;
+    if (
+      !window.confirm(
+        "Tem certeza que deseja remover este período de indisponibilidade?"
+      )
+    )
+      return;
     try {
-      const response = await fetch(`http://localhost:5000/api/bloqueios/${bloqueioId}`, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `https://apiunihosp.onrender.com/api/bloqueios/${bloqueioId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       if (!response.ok) {
         const result = await response.json().catch(() => ({}));
         throw new Error(result.error || "Falha ao remover bloqueio.");
@@ -134,32 +163,44 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
   };
 
   const tileDisabled = ({ date, view }) => {
-    if (view === 'month') {
+    if (view === "month") {
       const currentDate = formatarDataParaAPI(date);
       for (const reserva of reservas) {
-        if (currentDate >= formatarDataParaAPI(reserva.dataCheckIn) && currentDate <= formatarDataParaAPI(reserva.dataCheckOut)) {
+        if (
+          currentDate >= formatarDataParaAPI(reserva.dataCheckIn) &&
+          currentDate <= formatarDataParaAPI(reserva.dataCheckOut)
+        ) {
           return true;
         }
       }
       for (const bloqueio of bloqueios) {
-        if (currentDate >= formatarDataParaAPI(bloqueio.dataInicio) && currentDate <= formatarDataParaAPI(bloqueio.dataFim)) {
+        if (
+          currentDate >= formatarDataParaAPI(bloqueio.dataInicio) &&
+          currentDate <= formatarDataParaAPI(bloqueio.dataFim)
+        ) {
           return true;
         }
       }
     }
     return false;
   };
-  
+
   const tileClassName = ({ date, view }) => {
-    if (view === 'month') {
+    if (view === "month") {
       const currentDateStr = formatarDataParaAPI(date);
       for (const reserva of reservas) {
-        if (currentDateStr >= formatarDataParaAPI(reserva.dataCheckIn) && currentDateStr <= formatarDataParaAPI(reserva.dataCheckOut)) {
+        if (
+          currentDateStr >= formatarDataParaAPI(reserva.dataCheckIn) &&
+          currentDateStr <= formatarDataParaAPI(reserva.dataCheckOut)
+        ) {
           return styles.dataReservada;
         }
       }
       for (const bloqueio of bloqueios) {
-        if (currentDateStr >= formatarDataParaAPI(bloqueio.dataInicio) && currentDateStr <= formatarDataParaAPI(bloqueio.dataFim)) {
+        if (
+          currentDateStr >= formatarDataParaAPI(bloqueio.dataInicio) &&
+          currentDateStr <= formatarDataParaAPI(bloqueio.dataFim)
+        ) {
           return styles.dataBloqueadaManualmente;
         }
       }
@@ -167,16 +208,25 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
     return null;
   };
 
-
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className={styles.closeButton} aria-label="Fechar modal de disponibilidade">
+        <button
+          onClick={onClose}
+          className={styles.closeButton}
+          aria-label="Fechar modal de disponibilidade"
+        >
           &times; {}
         </button>
-        <h3 className={styles.modalTitle}>Gerenciar Disponibilidade{nomeCasa ? `: ${nomeCasa}` : ''}</h3>
+        <h3 className={styles.modalTitle}>
+          Gerenciar Disponibilidade{nomeCasa ? `: ${nomeCasa}` : ""}
+        </h3>
 
-        {loading && <p className={styles.loading}>Carregando dados de disponibilidade...</p>}
+        {loading && (
+          <p className={styles.loading}>
+            Carregando dados de disponibilidade...
+          </p>
+        )}
         {error && !loading && <p className={styles.errorFeedback}>{error}</p>}
 
         {!loading && (
@@ -189,13 +239,24 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
                 minDate={new Date()}
               />
               <div className={styles.legendaCalendario}>
-                <span className={`${styles.legendaItem} ${styles.legendaReservado}`}>Reservado</span>
-                <span className={`${styles.legendaItem} ${styles.legendaBloqueadoManualmente}`}>Bloqueado Manualmente</span>
+                <span
+                  className={`${styles.legendaItem} ${styles.legendaReservado}`}
+                >
+                  Reservado
+                </span>
+                <span
+                  className={`${styles.legendaItem} ${styles.legendaBloqueadoManualmente}`}
+                >
+                  Bloqueado Manualmente
+                </span>
               </div>
             </div>
 
             <div className={styles.formularioEListaBloqueios}>
-              <form onSubmit={handleAdicionarBloqueio} className={styles.formBloqueio}>
+              <form
+                onSubmit={handleAdicionarBloqueio}
+                className={styles.formBloqueio}
+              >
                 <h4>Adicionar Período de Indisponibilidade</h4>
                 <div className={styles.inputGroup}>
                   <label htmlFor="dataInicioBloqueio">Data Início:</label>
@@ -229,8 +290,12 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
                     placeholder="Ex: Manutenção, Uso pessoal"
                   />
                 </div>
-                <button type="submit" className={styles.submitButton} disabled={submittingBloqueio}>
-                  {submittingBloqueio ? 'Adicionando...' : 'Adicionar Bloqueio'}
+                <button
+                  type="submit"
+                  className={styles.submitButton}
+                  disabled={submittingBloqueio}
+                >
+                  {submittingBloqueio ? "Adicionando..." : "Adicionar Bloqueio"}
                 </button>
               </form>
 
@@ -242,9 +307,21 @@ function DisponibilidadeModal({ casaId, nomeCasa, onClose, onBloqueioAtualizado 
                   <ul>
                     {bloqueios.map((bloqueio) => (
                       <li key={bloqueio.id}>
-                        De {new Date(bloqueio.dataInicio).toLocaleDateString('pt-BR', {timeZone:'UTC'})} até {new Date(bloqueio.dataFim).toLocaleDateString('pt-BR', {timeZone:'UTC'})}
+                        De{" "}
+                        {new Date(bloqueio.dataInicio).toLocaleDateString(
+                          "pt-BR",
+                          { timeZone: "UTC" }
+                        )}{" "}
+                        até{" "}
+                        {new Date(bloqueio.dataFim).toLocaleDateString(
+                          "pt-BR",
+                          { timeZone: "UTC" }
+                        )}
                         {bloqueio.motivo && ` (${bloqueio.motivo})`}
-                        <button onClick={() => handleRemoverBloqueio(bloqueio.id)} className={styles.botaoRemoverPequeno}>
+                        <button
+                          onClick={() => handleRemoverBloqueio(bloqueio.id)}
+                          className={styles.botaoRemoverPequeno}
+                        >
                           Remover
                         </button>
                       </li>

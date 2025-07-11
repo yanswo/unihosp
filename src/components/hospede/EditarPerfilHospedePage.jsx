@@ -10,10 +10,9 @@ const LockIcon = () => <span className={styles.icon}>&#128274;</span>;
 const CpfIcon = () => <span className={styles.icon}>&#128196;</span>;
 const CepIcon = () => <span className={styles.icon}>&#128230;</span>;
 const CityIcon = () => <span className={styles.icon}>&#127961;</span>;
-const StateIcon = () => (<span className={styles.icon}>&#127463;&#127479;</span>);
+const StateIcon = () => <span className={styles.icon}>&#127463;&#127479;</span>;
 const MatriculaIcon = () => <span className={styles.icon}>&#127891;</span>;
 const UniversityIcon = () => <span className={styles.icon}>&#127979;</span>;
-
 
 function EditarPerfilHospedePage() {
   const { token, userId } = useAuth();
@@ -44,13 +43,15 @@ function EditarPerfilHospedePage() {
     setError("");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/hospede/${userId}`,
+        `https://apiunihosp.onrender.com/api/hospede/${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({ error: `Erro HTTP ${response.status}` }));
+        const errData = await response
+          .json()
+          .catch(() => ({ error: `Erro HTTP ${response.status}` }));
         throw new Error(errData.error || "Erro ao buscar dados do perfil.");
       }
       const data = await response.json();
@@ -101,7 +102,7 @@ function EditarPerfilHospedePage() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/hospede/${userId}`,
+        `https://apiunihosp.onrender.com/api/hospede/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -112,7 +113,9 @@ function EditarPerfilHospedePage() {
         }
       );
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({ error: `Erro HTTP ${response.status}` }));
+        const errData = await response
+          .json()
+          .catch(() => ({ error: `Erro HTTP ${response.status}` }));
         throw new Error(errData.error || "Erro ao atualizar perfil.");
       }
       const result = await response.json();
@@ -139,7 +142,6 @@ function EditarPerfilHospedePage() {
     );
   }
 
-
   return (
     <div className={styles.dashboardContainer}>
       <DashboardHeader />
@@ -147,15 +149,18 @@ function EditarPerfilHospedePage() {
         <section className={styles.dashboardSection}>
           <h3>Editar Meu Perfil</h3>
           {}
-          {error && !submitLoading && <p className={styles.errorMessage}>{error}</p>}
-          {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
-          
-          <form
-            onSubmit={handleSubmit}
-            className={styles.profileEditForm}
-          >
+          {error && !submitLoading && (
+            <p className={styles.errorMessage}>{error}</p>
+          )}
+          {successMessage && (
+            <p className={styles.successMessage}>{successMessage}</p>
+          )}
+
+          <form onSubmit={handleSubmit} className={styles.profileEditForm}>
             <div className={styles.formGrid}>
-              <div className={styles.inputGroupAdmin}> {}
+              <div className={styles.inputGroupAdmin}>
+                {" "}
+                {}
                 <UserIcon />
                 <input
                   className={styles.formInput}

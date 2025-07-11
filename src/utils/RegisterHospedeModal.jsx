@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./RegisterHospedeModal.module.css";
-import imagem from "../../public/login.png"
-
+import imagem from "../../public/login.png";
 
 const UserIcon = () => <span className={styles.icon}>&#128100;</span>;
 const EmailIcon = () => <span className={styles.icon}>&#128231;</span>;
@@ -67,13 +66,16 @@ function RegisterHospedeModal({ isOpen, onClose, onSwitchToLogin }) {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/hospede", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://apiunihosp.onrender.com/api/hospede",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const result = await response.json();
 
@@ -104,7 +106,6 @@ function RegisterHospedeModal({ isOpen, onClose, onSwitchToLogin }) {
       if (onSwitchToLogin) {
         onSwitchToLogin();
       }
-
     } catch (err) {
       setError(err.message || "Falha ao realizar cadastro. Tente novamente.");
     } finally {

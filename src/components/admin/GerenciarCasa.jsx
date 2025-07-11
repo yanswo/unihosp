@@ -21,9 +21,12 @@ function GerenciarCasas({ token }) {
     setError("");
     console.log("GerenciarCasas: Buscando casas e locadores...");
     try {
-      const casasResponse = await fetch("http://localhost:5000/api/casa", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const casasResponse = await fetch(
+        "https://apiunihosp.onrender.com/api/casa",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const casasResponseText = await casasResponse.text();
       console.log(
         `GerenciarCasas: fetchCasas - Status: ${casasResponse.status}, Resposta Bruta: ${casasResponseText}`
@@ -43,7 +46,7 @@ function GerenciarCasas({ token }) {
       }
 
       const locadoresResponse = await fetch(
-        "http://localhost:5000/api/locador",
+        "https://apiunihosp.onrender.com/api/locador",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -96,10 +99,13 @@ function GerenciarCasas({ token }) {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(`http://localhost:5000/api/casa/${casaId}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `https://apiunihosp.onrender.com/api/casa/${casaId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const responseText = await response.text();
       if (!response.ok) {
         let errData = { error: `Erro HTTP ${response.status}` };
@@ -123,8 +129,8 @@ function GerenciarCasas({ token }) {
     setError("");
     const method = casaId ? "PUT" : "POST";
     const url = casaId
-      ? `http://localhost:5000/api/casa/${casaId}`
-      : "http://localhost:5000/api/casa";
+      ? `https://apiunihosp.onrender.com/api/casa/${casaId}`
+      : "https://apiunihosp.onrender.com/api/casa";
 
     console.log(
       `GerenciarCasas: Salvando casa. Método: ${method}, URL: ${url}`

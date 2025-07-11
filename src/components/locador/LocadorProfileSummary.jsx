@@ -19,13 +19,15 @@ function LocadorProfileSummary({ onCasasFetched }) {
       setError("");
       try {
         const response = await fetch(
-          `http://localhost:5000/api/locador/${userId}`,
+          `https://apiunihosp.onrender.com/api/locador/${userId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         if (!response.ok) {
-          const errData = await response.json().catch(() => ({error: `Erro HTTP ${response.status}`}));
+          const errData = await response
+            .json()
+            .catch(() => ({ error: `Erro HTTP ${response.status}` }));
           throw new Error(errData.error || `Erro ao buscar dados do locador`);
         }
         const data = await response.json();
@@ -40,8 +42,17 @@ function LocadorProfileSummary({ onCasasFetched }) {
   }, [token, userId]);
 
   if (loading)
-    return <div className={styles.profileSummary}><p className={styles.loading}>Carregando perfil do locador...</p></div>;
-  if (error) return <div className={styles.profileSummary}><p className={styles.error}>{error}</p></div>;
+    return (
+      <div className={styles.profileSummary}>
+        <p className={styles.loading}>Carregando perfil do locador...</p>
+      </div>
+    );
+  if (error)
+    return (
+      <div className={styles.profileSummary}>
+        <p className={styles.error}>{error}</p>
+      </div>
+    );
   if (!locadorData)
     return (
       <div className={styles.profileSummary}>
@@ -52,7 +63,9 @@ function LocadorProfileSummary({ onCasasFetched }) {
     );
 
   return (
-    <div className={styles.profileSummary}> {}
+    <div className={styles.profileSummary}>
+      {" "}
+      {}
       <h2>Olá, {locadorData.name}!</h2>
       <p>Gerencie suas propriedades e reservas diretamente do seu painel.</p>
       <div className={styles.profileDetails}>

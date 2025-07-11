@@ -24,9 +24,12 @@ function GerenciarLocadores({ token }) {
     setError("");
     console.log("GerenciarLocadores: Buscando locadores...");
     try {
-      const response = await fetch("http://localhost:5000/api/locador", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        "https://apiunihosp.onrender.com/api/locador",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const responseText = await response.text();
       console.log(
         `GerenciarLocadores: fetchLocadores - Status: ${response.status}, Resposta Bruta: ${responseText}`
@@ -85,7 +88,7 @@ function GerenciarLocadores({ token }) {
     console.log(`GerenciarLocadores: Deletando locador ID: ${locadorId}`);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/locador/${locadorId}`,
+        `https://apiunihosp.onrender.com/api/locador/${locadorId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -118,8 +121,8 @@ function GerenciarLocadores({ token }) {
     setError("");
     const method = locadorId ? "PUT" : "POST";
     const url = locadorId
-      ? `http://localhost:5000/api/locador/${locadorId}`
-      : "http://localhost:5000/api/locador";
+      ? `https://apiunihosp.onrender.com/api/locador/${locadorId}`
+      : "https://apiunihosp.onrender.com/api/locador";
 
     console.log(
       `GerenciarLocadores: Salvando locador. Método: ${method}, URL: ${url}`

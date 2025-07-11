@@ -51,13 +51,13 @@ export const AuthProvider = ({ children }) => {
     let loginEndpoint = "";
     switch (loginUserType) {
       case "hospede":
-        loginEndpoint = "http://localhost:5000/api/login/hospede";
+        loginEndpoint = "https://apiunihosp.onrender.com/api/login/hospede";
         break;
       case "locador":
-        loginEndpoint = "http://localhost:5000/api/locador/login";
+        loginEndpoint = "https://apiunihosp.onrender.com/api/locador/login";
         break;
       case "admin":
-        loginEndpoint = "http://localhost:5000/api/login/admin";
+        loginEndpoint = "https://apiunihosp.onrender.com/api/login/admin";
         break;
       default:
         setAuthLoading(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RegisterLocadorModal.module.css";
 // import { useAuth } from "../context/AuthContext";
-import imagem from "../../public/login.png"
+import imagem from "../../public/login.png";
 
 const UserIcon = () => <span className={styles.icon}>&#128100;</span>;
 const EmailIcon = () => <span className={styles.icon}>&#128231;</span>;
@@ -69,13 +69,16 @@ function RegisterLocadorModal({ isOpen, onClose, onSwitchToLogin }) {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/locador", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://apiunihosp.onrender.com/api/locador",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const responseText = await response.text();
       console.log(
@@ -126,7 +129,6 @@ function RegisterLocadorModal({ isOpen, onClose, onSwitchToLogin }) {
       if (onSwitchToLogin) {
         onSwitchToLogin();
       }
-
     } catch (err) {
       console.error("RegisterLocadorModal: Falha ao cadastrar locador:", err);
       setError(err.message || "Falha ao realizar cadastro. Tente novamente.");

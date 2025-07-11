@@ -22,9 +22,12 @@ function GerenciarHospedes({ token }) {
     setError("");
     console.log("GerenciarHospedes: Iniciando fetchHospedes com token.");
     try {
-      const response = await fetch("http://localhost:5000/api/hospede", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        "https://apiunihosp.onrender.com/api/hospede",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const responseText = await response.text();
       console.log(
         `GerenciarHospedes: fetchHospedes - Status: ${response.status}, Resposta Bruta: ${responseText}`
@@ -92,7 +95,7 @@ function GerenciarHospedes({ token }) {
     console.log(`GerenciarHospedes: Deletando hóspede ID: ${hospedeId}`);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/hospede/${hospedeId}`,
+        `https://apiunihosp.onrender.com/api/hospede/${hospedeId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -127,8 +130,8 @@ function GerenciarHospedes({ token }) {
     setError("");
     const method = hospedeId ? "PUT" : "POST";
     const url = hospedeId
-      ? `http://localhost:5000/api/hospede/${hospedeId}`
-      : "http://localhost:5000/api/hospede";
+      ? `https://apiunihosp.onrender.com/api/hospede/${hospedeId}`
+      : "https://apiunihosp.onrender.com/api/hospede";
 
     console.log(
       `GerenciarHospedes: handleSaveHospede - Método: ${method}, URL: ${url}`
